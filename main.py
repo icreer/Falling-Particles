@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 from pygame.math import Vector2
 from pygame import mixer
-
+from constant import *
 import time
 import random
 import math
@@ -352,10 +352,6 @@ class Main():
 
     def game(self, screen, font, WIDTH, HEIGHT):
         global game_state
-
-        WHITE = (255, 255, 255)
-        BLACK = (0,0,0)
-
         
         self.previous_frame_time = time.time()
         #       A      D      Space
@@ -423,19 +419,14 @@ class Main():
     def menu(self, screen, font, WIDTH, HEIGHT):
         global game_state
 
-        COLOR = (224, 190, 108)
-
         sound = pygame.mixer.Sound("Actor/Sound/Start.wav")
         play_text = font.render("PLAY", True, (255,255,255))
         play_text_y_offset = 0
 
         score_text = font.render("HIGH SCORE: " + str(int(max_score)), True, (255,255,255))
 
-        
-
-        direc = 1
         while game_state == 0:
-            screen.fill(COLOR)
+            screen.fill(Tan)
             screen.blit(play_text, (WIDTH/2 - play_text.get_width() / 2, HEIGHT/2 - play_text.get_height() / 2 + play_text_y_offset))
             screen.blit(score_text, (WIDTH/2 - score_text.get_width() / 2, HEIGHT/2 - score_text.get_height() / 2 + 150))
             play_text_y_offset = math.sin(time.time() * 5) * 5 - 25
@@ -456,9 +447,8 @@ class Main():
         global entities_alive 
         
         while game_state != 2:
-            WIDTH, HEIGHT = 720, 480
 
-            screen = self.setup_pygame("Physics Run", WIDTH, HEIGHT)
+            screen = self.setup_pygame("Falling Particles", WIDTH, HEIGHT)
             font = pygame.font.Font("Actor/Inter.ttf", 32)
             
             if(game_state == 0):
