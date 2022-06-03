@@ -3,9 +3,7 @@ from pygame.locals import *
 from pygame.math import Vector2
 from pygame import mixer
 from Game.constant import *
-import time
-import random
-import math
+
 
 '''
 This is the base Entity Class. There are 3 Entity That use this class

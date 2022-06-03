@@ -1,3 +1,4 @@
+from html import entities
 from pygame.locals import *
 from pygame.math import Vector2
 from pygame import mixer
@@ -6,14 +7,13 @@ from Game.Positron import *
 from Game.Electron import *
 from Game.Detector import *
 import random
-
+#from main import entities_alive,game_state
 
 '''
 This class deals with spaning entity
 '''
 class Spawner():
-    global game_state
-    global entities_alive
+    
     total_enemies_spawned = 0
     time_elapsed = 0
     screen = 0
@@ -31,6 +31,7 @@ class Spawner():
         global score_int
         global score
         global max_score
+        global entities_alive
         for i in range(len(entities_alive)):
             try:
                 if(entities_alive[i].bottom > 380 + 50 - scalar):

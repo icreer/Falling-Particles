@@ -9,7 +9,6 @@ from Game.Particle import *
 import time
 import math
 
-
 game_state = 0
 score = 0
 score_int = 0
@@ -23,7 +22,7 @@ entities_alive = []
 THis is the main class for the game
 '''
 class Main():
-    global game_state
+    
     previous_frame_time = 0
     dt = 0
     elapsed_time = 0
@@ -65,8 +64,6 @@ class Main():
         return screen
 
     def update_score(self, screen, text):
-        global score_int
-        global score
         score += self.dt / 100
         score_int = int(score)
         score_text = text.render("Energy Level: " + str(score_int),True,(0,0,255))
@@ -86,7 +83,6 @@ class Main():
 
     def game(self, screen, font, WIDTH, HEIGHT):
         global game_state
-        
         self.previous_frame_time = time.time()
         #       A      D      Space
         keys = [False, False, False]
@@ -152,7 +148,6 @@ class Main():
 
     def menu(self, screen, font, WIDTH, HEIGHT):
         global game_state
-
         sound = pygame.mixer.Sound("Actor/Sound/Start.wav")
         play_text = font.render("PLAY", True, (255,255,255))
         play_text_y_offset = 0
@@ -176,10 +171,6 @@ class Main():
                        
     def __init__(self):
         global game_state
-        global score 
-        global score_int
-        global entities_alive 
-        
         while game_state != 2:
 
             screen = self.setup_pygame("Falling Particles", WIDTH, HEIGHT)

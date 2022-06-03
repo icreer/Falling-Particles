@@ -11,7 +11,7 @@ import math
 This class handles the player any most things invlived the the player
 '''
 class Player():
-    global game_state
+   
     #Transform
     position = pygame.Vector2()
     scale = pygame.Vector2()
@@ -47,9 +47,6 @@ class Player():
         self.scalar = self.scale.x
 
     def move(self, keys, dt):
-        global score_int
-        global score
-        global max_score
 
         if(keys[0]):
             self.position.x -= 0.01 * dt * self.speed

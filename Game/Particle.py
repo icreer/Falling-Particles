@@ -4,11 +4,11 @@ import random
 import pygame
 from pygame.locals import *
 from pygame.math import Vector2
-from pygame import mixer
+
 from Game.constant import *
-import time
+
 import random
-import math
+
 
 '''
 THis class createds the back ground particles 
