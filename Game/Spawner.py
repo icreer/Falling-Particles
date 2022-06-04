@@ -7,7 +7,7 @@ from Game.Positron import *
 from Game.Electron import *
 from Game.Detector import *
 import random
-#from main import entities_alive,game_state
+
 
 '''
 This class deals with spaning entity
