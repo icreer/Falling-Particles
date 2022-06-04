@@ -13,7 +13,7 @@ game_state = 0
 score = 0
 score_int = 0
 max_score = 0
-
+play = True
 entities_alive = []
 
 
@@ -64,6 +64,7 @@ class Main():
         return screen
 
     def update_score(self, screen, text):
+        global score, score_int
         score += self.dt / 100
         score_int = int(score)
         score_text = text.render("Energy Level: " + str(score_int),True,(0,0,255))
@@ -82,13 +83,13 @@ class Main():
         
 
     def game(self, screen, font, WIDTH, HEIGHT):
-        global game_state
+        global game_state, score, play
         self.previous_frame_time = time.time()
         #       A      D      Space
         keys = [False, False, False]
 
         player = Player(40, 40, WIDTH, HEIGHT)
-
+        
         colliders = []
 
         #Constant Sprites
@@ -101,7 +102,7 @@ class Main():
 
         colliders.append(foreground_collider)
 
-        spawner = Spawner(screen)
+        spawner = Spawner(screen,entities_alive)
 
         particles = []
 
@@ -134,13 +135,14 @@ class Main():
 
             player.move(keys, self.dt)
             player.draw(screen, BLACK, self.dt, colliders)
-
-            spawner.spawner()
+            
+            spawner.spawner(entities_alive)
             spawner.set_time_between_spawns(self.time_between_spawns)
             spawner.timer(self.dt)
-            spawner.draw_enemies(self.dt)
-            spawner.check_for_player(player, player.scalar)
-
+            spawner.draw_enemies(self.dt,entities_alive)
+            play = spawner.check_for_player(player, player.scalar, entities_alive, game_state, score, max_score)
+            if play is False:
+                game_state = 0
 
             self.update_score(screen, font)
 
@@ -187,7 +189,7 @@ class Main():
             self.reset_state()
             score = 0
             score_int = 0
-            entities_alive.clear()
+            #entities_alive.clear()
             entities_alive = []
             
 game = Main()
